@@ -41,7 +41,7 @@ export default function Home() {
 
     setSubmitting(true);
     try {
-      const res = await fetch("/api/entries", {
+      const res = await fetch("/api/data", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),

@@ -1,6 +1,6 @@
 // ============================================================
-// GET  api/data        → return all entries (admin)
-// POST api/data        → submit a new entry (employee)
+// GET  api/data
+// POST api/data
 // ============================================================
 
 import { readEntries, appendEntry } from "../../../lib/db";
@@ -58,27 +58,19 @@ export async function POST(request) {
       );
     }
 
-    const entries = await readEntries();
-
-    if (entries.some((e) => e.name === name)) {
-      return new Response(
-        JSON.stringify({
-          ok: false,
-          error: "An entry with this name already exists.",
-        }),
-        {
-          status: 400,
-          headers: {
-            "Content-Type": "application/json",
-          },
-        },
-      );
-    }
-
     const result = await appendEntry({
       name,
       size,
     });
+
+    if (!result.ok) {
+      return new Response(JSON.stringify(result), {
+        status: 400,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    }
 
     return new Response(JSON.stringify(result), {
       status: 201,

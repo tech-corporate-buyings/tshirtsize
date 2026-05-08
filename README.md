@@ -99,7 +99,7 @@ npm run dev
 
 ## API Routes
 
-### `POST /api/entries`
+### `POST /api/data`
 
 Submit a new registration
 
@@ -110,11 +110,11 @@ Submit a new registration
 }
 ```
 
-### `GET /api/entries`
+### `GET /api/data`
 
 Retrieve all registrations (admin)
 
-### `DELETE /api/entries/clear`
+### `DELETE /api/data/clear`
 
 Delete all entries (requires admin password)
 
